@@ -1,3 +1,4 @@
+import json
 print("欢迎进入学生管理系统")
 menu = """
 ######学生管理系统#######
@@ -10,7 +11,19 @@ menu = """
 #######################
 """
 print(menu)      #输出菜单
-student = {}     # 建立一个空字典,student = {"id":{"id":"001", "name":"张三","age":20,"score":90 ,"major":"数学与应用数学"},{},...}
+try:
+    with open("student.json","r",encoding="utf-8") as f:
+        student = json.load(f)
+except:
+    # 建立一个空字典,student = {"id":{"id":"001", "name":"张三","age":20,"score":90 ,"major":"数学与应用数学"},{},...}
+    student = {}
+def save_data():
+    """
+
+    :return:
+    """
+    with open("student.json","w",encoding="utf-8") as f:
+        json.dump(student,f,ensure_ascii=False,indent=4)
 while True:      #while循环
     a = int(input("请输入您要使用的功能:"))
 
@@ -24,6 +37,7 @@ while True:      #while循环
         student_grades = int(input("请输入学生的成绩:"))
         student_major = input("请输入学生的专业:")
         student[student_id] = {"id":student_id,"name":student_name,"age":student_age,"grades":student_grades,"major":student_major}
+        save_data()
         print("该学生已成功添加!")
     elif a == 2:   #查询
         student_id = input("请输入您要查询的学生id:")
@@ -39,6 +53,7 @@ while True:      #while循环
             print("该学生不存在,请重新输入")
             continue
         del student[student_id]
+        save_data()
 
 
     elif a == 4:    #修改
@@ -51,6 +66,7 @@ while True:      #while循环
         student_grades = input("请输入最终的成绩:")
         student_major = input("请输入最终的专业:")
         student[student_id]={"id":student_id,"name":student_name,"age":student_age,"grades":student_grades,"major":student_major}
+        save_data()
 
     elif a == 5:    #统计
             abc=[]                  #定义一个空列表
