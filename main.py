@@ -61,35 +61,51 @@ while True:      #while循环
         save_data()
         print("该学生已成功添加!")
     elif a == 2:   #查询
-        student_id = input("请输入您要查询的学生id:")
-        if student_id not in student:
-            print("该学生不存在,请重新输入")
+        if not student:
+            print("暂无学生,请添加")
             continue
-        print(student[student_id])
+        else:
+            student_id = input("请输入您要查询的学生id:")
+            if student_id not in student:
+                print("该学生不存在,请重新输入")
+                continue
+            print(student[student_id])
 
 
     elif a == 3:    #删除
-        student_id = input("请输入您要删除的学生id:")
-        if student_id not in student:
-            print("该学生不存在,请重新输入")
+        if not student:
+            print("暂无学生,请添加")
             continue
-        del student[student_id]
-        save_data()
+        else:
+            student_id = input("请输入您要删除的学生id:")
+            if student_id not in student:
+                print("该学生不存在,请重新输入")
+                continue
+            del student[student_id]
+            save_data()
 
 
     elif a == 4:    #修改
-        student_id = input("请输入您要修改的学生id:")
-        if student_id not in student:
-            print("该学生不存在,请重新输入")
+        if not student:
+            print("暂无学生,请添加")
             continue
-        student_name = input("请输入要最终的姓名:")
-        student_age = input("请输入最终的年龄:")
-        student_grades = input("请输入最终的成绩:")
-        student_major = input("请输入最终的专业:")
-        student[student_id]={"id":student_id,"name":student_name,"age":student_age,"grades":student_grades,"major":student_major}
-        save_data()
+        else:
+            student_id = input("请输入您要修改的学生id:")
+            if student_id not in student:
+                print("该学生不存在,请重新输入")
+                continue
+            student_name = input("请输入要最终的姓名:")
+            student_age = input("请输入最终的年龄:")
+            student_grades = input("请输入最终的成绩:")
+            student_major = input("请输入最终的专业:")
+            student[student_id]={"id":student_id,"name":student_name,"age":student_age,"grades":student_grades,"major":student_major}
+            save_data()
 
     elif a == 5:    #成绩分析
+        if not student:
+            print("暂无学生,请添加")
+            continue
+        else:
             abc=[]                  #定义一个空列表
             pass_grades = 0         # 初始及格人数
             for i in student.values():    #for循环,对字典student中的值进行遍历
