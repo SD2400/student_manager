@@ -2,12 +2,13 @@ import json
 print("欢迎进入学生管理系统")
 menu = """
 ######学生管理系统#######
-#       1.添加        #
-#       2.查询        #
-#       3.删除        #
-#       4.修改        #
-#       5.统计        #
-#       0.退出        #
+#      1.添加学生      #
+#      2.查询学生      #
+#      3.删除学生      #
+#      4.修改数据      #
+#      5.成绩分析      #
+#      6.成绩统计      # 
+#      0.退出系统      #
 #######################
 """
 try:
@@ -88,7 +89,7 @@ while True:      #while循环
         student[student_id]={"id":student_id,"name":student_name,"age":student_age,"grades":student_grades,"major":student_major}
         save_data()
 
-    elif a == 5:    #统计
+    elif a == 5:    #成绩分析
             abc=[]                  #定义一个空列表
             pass_grades = 0         # 初始及格人数
             for i in student.values():    #for循环,对字典student中的值进行遍历
@@ -99,9 +100,13 @@ while True:      #while循环
             min_grades = min(abc)  #求最小值
             avg_grades = sum(abc)/len(abc)  #求平均值
             print(f"分数最高为:{max_grades},分数最低为:{min_grades},平均分为:{avg_grades},及格人数为:{pass_grades}")
-
-
-
+    elif a == 6:    #成绩统计
+        if not student:
+            print("暂无学生,请添加")
+            continue
+        else:
+            for i in student.values():
+                print(i)
 
     elif a == 0:    #退出
         print("bye~")
