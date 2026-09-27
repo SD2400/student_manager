@@ -1,4 +1,4 @@
-from utils.my_fun import add,find,delete,update,analyze,statistics
+from utils.my_fun import add,find,find_by_name,find_by_grades,delete,update,analyze,statistics
 from utils.menu import menu
 from utils.storage import load_data,save_data
 print("欢迎进入学生管理系统")

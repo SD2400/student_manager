@@ -29,19 +29,54 @@ def add(student):
     return True
 
 
-
-
 def find(student):
     if not student:
         print("暂无学生,请添加")
         return False
     else:
-        student_id = input("请输入您要查询的学生id:")
-        if student_id not in student:
-            print("该学生不存在,请重新输入")
+        b = int(input("请输入您要查询的方式:1.按姓名查询 2.按成绩范围查询 :"))
+        if b == 1:
+            find_by_name(student)
             return False
-        print(student[student_id])
+        elif b == 2:
+            find_by_grades(student)
+            return False
+
+
+def find_by_name(student):
+    student_name = input("请输入您要查询的学生name:")
+    result = []
+    for i in student.values():
+        if student_name == i["name"]:
+            result.append(i)
+    if not result:
+        print("该学生不存在,请重新输入")
         return False
+    else:
+        for i in result:
+            print(i)
+    return False
+
+def find_by_grades(student):
+    try:
+        low_grade = int(input("请输入成绩下限:"))
+        high_grade = int(input("请输入成绩上限:"))
+    except ValueError:
+        print("成绩必须是整数,请重新输入")
+        return False
+    if low_grade > high_grade:
+        print("下限不能大于上限,请重新输入")
+        return False
+    result = []
+    for i in student.values():
+        if low_grade <= i["grades"] <= high_grade:
+            result.append(i)
+    if not result:
+        print("暂无学生成绩属于此范围")
+    else:
+        for i in result:
+            print(i)
+    return False
 
 
 def delete(student):
