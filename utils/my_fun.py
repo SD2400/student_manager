@@ -153,6 +153,7 @@ def statistics(student):
         print("暂无学生,请添加")
         return False
     else:
-        for i in student.values():
+        student = sorted(student.values(),key = lambda s :(-s["grades"],s["name"]))  #按照成绩降序,姓名升序进行排序
+        for i in student:
             print(i)
         return False
