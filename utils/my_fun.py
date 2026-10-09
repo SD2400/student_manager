@@ -140,10 +140,12 @@ def analyze(student):
             abc.append(i["grades"])  # 将grades中的值添加进abc空列表中
             if i["grades"] >= 60:  # if条件判断
                 pass_grades += 1
+        total_num = len(abc)
         max_grades = max(abc)  # 求最大值
         min_grades = min(abc)  # 求最小值
         avg_grades = sum(abc) / len(abc)  # 求平均值
-        print(f"分数最高为:{max_grades},分数最低为:{min_grades},平均分为:{avg_grades},及格人数为:{pass_grades}")
+        pass_rate = pass_grades / total_num *100 #及格率
+        print(f"分数最高为:{max_grades},分数最低为:{min_grades},平均分为:{avg_grades},总人数为:{total_num},及格人数为:{pass_grades},及格率为:{pass_rate}%")
         return False
 
 
@@ -157,3 +159,4 @@ def statistics(student):
         for i in student:
             print(i)
         return False
+
